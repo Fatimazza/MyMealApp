@@ -11,4 +11,15 @@ class MealViewModel() : ViewModel() {
     var mealUiState: String by mutableStateOf("")
         private set
 
+    init {
+        getMealsData()
+    }
+
+    /**
+     * Gets Meals information from the Meals API Retrofit service
+     */
+    fun getMealsData() {
+        mealUiState = "Set the Mars API status response here!"
+    }
+
 }

@@ -1,6 +1,8 @@
 package id.fatimazza.mymealapp.ui
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
@@ -52,11 +54,13 @@ fun MyMealApp(
             BottomBar(navController)
         },
         modifier = modifier
-    ) {
-        MealNavHost(
-            mealsUiState = mealsViewModel.mealsUiState,
-            navController = navController
-        )
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
+            MealNavHost(
+                mealsUiState = mealsViewModel.mealsUiState,
+                navController = navController
+            )
+        }
     }
 }
 

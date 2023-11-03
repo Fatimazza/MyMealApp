@@ -1,7 +1,7 @@
 package id.fatimazza.mymealapp.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import id.fatimazza.mymealapp.model.MealResponse
+import id.fatimazza.mymealapp.model.MealsResponse
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
@@ -23,7 +23,7 @@ private val retrofit = Retrofit.Builder()
  */
 interface MealsApiService {
     @GET("v1/1/filter.php?a=Japanese")
-    suspend fun getMeals(): MealResponse
+    suspend fun getMeals(): MealsResponse
 }
 
 /**

@@ -3,7 +3,7 @@ package id.fatimazza.mymealapp.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MealResponse(
+data class MealsResponse(
     val meals: List<MealsItem>
 )
 

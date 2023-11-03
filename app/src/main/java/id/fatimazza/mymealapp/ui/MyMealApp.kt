@@ -17,7 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import id.fatimazza.mymealapp.R
+import id.fatimazza.mymealapp.ui.navigation.MealNavHost
 import id.fatimazza.mymealapp.ui.navigation.NavigationItem
 import id.fatimazza.mymealapp.ui.navigation.Screen
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
@@ -27,7 +30,8 @@ import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MyMealApp(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
 ) {
     Scaffold(
         topBar = {
@@ -43,6 +47,7 @@ fun MyMealApp(
         },
         modifier = modifier
     ) {
+        MealNavHost(navController = navController)
     }
 }
 

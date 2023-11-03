@@ -1,4 +1,4 @@
-package id.fatimazza.mymealapp.ui
+package id.fatimazza.mymealapp.ui.screen.detail
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview

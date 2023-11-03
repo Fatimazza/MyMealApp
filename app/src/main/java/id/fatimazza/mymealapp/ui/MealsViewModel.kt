@@ -35,8 +35,10 @@ class MealsViewModel() : ViewModel() {
     private fun getMealsData() {
         viewModelScope.launch {
             try {
-                val listResult = MealsApi.retrofitService.getMeals().meals.toString()
-                mealsUiState = MealsUiState.Success(listResult)
+                val listResult = MealsApi.retrofitService.getMeals().meals
+                mealsUiState = MealsUiState.Success(
+                    "Success ${listResult.size} Meals data received"
+                )
             } catch (e: IOException) {
                 mealsUiState = MealsUiState.Error
             }

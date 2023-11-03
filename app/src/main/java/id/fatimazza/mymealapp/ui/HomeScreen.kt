@@ -28,7 +28,7 @@ fun HomeScreen(
             LoadingScreen(modifier.fillMaxSize())
         is MealsUiState.Success -> {
             HomeResultScreen(
-                mealsUiState.toString()
+                mealsUiState.meals
             )
         }
         is MealsUiState.Error -> {

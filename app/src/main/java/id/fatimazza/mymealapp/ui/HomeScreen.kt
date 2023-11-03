@@ -6,16 +6,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import id.fatimazza.mymealapp.R
+import androidx.lifecycle.viewmodel.compose.viewModel
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    mealsViewModel: MealsViewModel = viewModel()
 ) {
-    HomeResultScreen(stringResource(R.string.menu_home))
+    HomeResultScreen(mealsViewModel.mealsUiState)
 }
 
 @Composable

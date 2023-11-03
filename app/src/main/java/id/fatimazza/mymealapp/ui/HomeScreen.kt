@@ -15,11 +15,19 @@ import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
+    HomeResultScreen(stringResource(R.string.menu_home))
+}
+
+@Composable
+fun HomeResultScreen(
+    photos: String,
+    modifier: Modifier = Modifier
+) {
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = stringResource(id = R.string.menu_home))
+        Text(text = photos)
     }
 }
 

@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import id.fatimazza.mymealapp.ui.FavoriteScreen
 import id.fatimazza.mymealapp.ui.HomeScreen
+import id.fatimazza.mymealapp.ui.MealsUiState
 
 /**
  * Provides Navigation graph for the application.
@@ -14,6 +15,7 @@ import id.fatimazza.mymealapp.ui.HomeScreen
 @Composable
 fun MealNavHost(
     navController: NavHostController,
+    mealsUiState: MealsUiState,
     modifier: Modifier = Modifier,
 ) {
     NavHost(
@@ -22,7 +24,9 @@ fun MealNavHost(
         modifier = modifier
     ) {
         composable(route = Screen.Home.route) {
-            HomeScreen()
+            HomeScreen(
+                mealsUiState = mealsUiState
+            )
         }
         composable(route = Screen.Favorite.route) {
             FavoriteScreen()

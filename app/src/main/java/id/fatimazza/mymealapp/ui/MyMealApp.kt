@@ -18,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -36,6 +37,7 @@ fun MyMealApp(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
+    val mealsViewModel: MealsViewModel = viewModel()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -50,7 +52,10 @@ fun MyMealApp(
         },
         modifier = modifier
     ) {
-        MealNavHost(navController = navController)
+        MealNavHost(
+            mealsUiState = mealsViewModel.mealsUiState,
+            navController = navController
+        )
     }
 }
 

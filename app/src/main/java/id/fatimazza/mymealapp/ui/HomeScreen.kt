@@ -7,14 +7,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
 @Composable
 fun HomeScreen(
-    mealsViewModel: MealsViewModel = viewModel()
+    mealsUiState: MealsUiState
 ) {
-    HomeResultScreen(mealsViewModel.mealsUiState)
+    when (mealsUiState) {
+        is MealsUiState.Success ->
+            HomeResultScreen(
+                mealsUiState.meals
+            )
+
+        else -> {
+            HomeResultScreen(
+                mealsUiState.toString()
+            )
+        }
+    }
 }
 
 @Composable
@@ -34,6 +44,6 @@ fun HomeResultScreen(
 @Composable
 fun HomeScreenPreview() {
     MyMealAppTheme {
-        HomeScreen()
+        HomeResultScreen(meals = "Home")
     }
 }

@@ -9,10 +9,20 @@ import id.fatimazza.mymealapp.network.MealsApi
 import kotlinx.coroutines.launch
 import java.io.IOException
 
+
+/**
+ * UI state for the Home screen
+ */
+sealed interface MealsUiState {
+    data class Success(val meals: String) : MealsUiState
+    object Error : MealsUiState
+    object Loading : MealsUiState
+}
+
 class MealsViewModel() : ViewModel() {
 
     /** The mutable State that stores the status of the most recent request */
-    var mealsUiState: String by mutableStateOf("")
+    var mealsUiState: MealsUiState by mutableStateOf(MealsUiState.Loading)
         private set
 
     init {
@@ -26,9 +36,9 @@ class MealsViewModel() : ViewModel() {
         viewModelScope.launch {
             try {
                 val listResult = MealsApi.retrofitService.getMeals()
-                mealsUiState = listResult
+                mealsUiState = MealsUiState.Success(listResult)
             } catch (e: IOException) {
-
+                mealsUiState = MealsUiState.Error
             }
         }
     }

@@ -25,7 +25,7 @@ sealed interface MealsUiState {
     object Loading : MealsUiState
 }
 
-class MealsViewModel(
+class HomeViewModel(
     private val mealsRepository: MealsRepository
 ) : ViewModel() {
 
@@ -54,14 +54,14 @@ class MealsViewModel(
     }
 
     /**
-     * Factory for [MealsViewModel] that takes [MealsRepository] as a dependency
+     * Factory for [HomeViewModel] that takes [MealsRepository] as a dependency
      */
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as MyMealsApplication)
                 val mealsRepository = application.container.mealsRepository
-                MealsViewModel(mealsRepository = mealsRepository)
+                HomeViewModel(mealsRepository = mealsRepository)
             }
         }
     }

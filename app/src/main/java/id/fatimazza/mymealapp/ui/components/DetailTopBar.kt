@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -25,7 +26,7 @@ fun DetailTopBar(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         IconButton(
@@ -42,13 +43,23 @@ fun DetailTopBar(
         Row(
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(end = dimensionResource(R.dimen.detail_title_padding_end))
+                .weight(1f)
         ) {
             Text(
                 text = stringResource(R.string.app_name),
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+        IconButton(
+            onClick = { },
+            modifier = Modifier
+                .padding(horizontal = dimensionResource(R.dimen.detail_topbar_back_button_padding_horizontal))
+                .background(MaterialTheme.colorScheme.surface, shape = CircleShape),
+        ) {
+            Icon(
+                imageVector = Icons.Default.FavoriteBorder,
+                contentDescription = stringResource(id = R.string.navigation_back)
             )
         }
     }

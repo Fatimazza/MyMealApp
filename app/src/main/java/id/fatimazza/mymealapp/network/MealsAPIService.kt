@@ -23,3 +23,12 @@ interface MealsApiService {
     suspend fun getMeals(): String
 }
 
+/**
+ * A public Api object that exposes the lazy-initialized Retrofit service
+ */
+object MealsApi {
+    val retrofitService: MealsApiService by lazy {
+        retrofit.create(MealsApiService::class.java)
+    }
+}
+

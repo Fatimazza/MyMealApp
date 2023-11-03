@@ -11,7 +11,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import id.fatimazza.mymealapp.MyMealsApplication
 import id.fatimazza.mymealapp.data.MealsRepository
-import id.fatimazza.mymealapp.data.NetworkMealsRepository
+import id.fatimazza.mymealapp.model.MealsItem
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -20,7 +20,7 @@ import java.io.IOException
  * UI state for the Home screen
  */
 sealed interface MealsUiState {
-    data class Success(val meals: String) : MealsUiState
+    data class Success(val meals: MealsItem) : MealsUiState
     object Error : MealsUiState
     object Loading : MealsUiState
 }
@@ -43,9 +43,9 @@ class MealsViewModel(
     private fun getMealsData() {
         viewModelScope.launch {
             try {
-                val listResult = mealsRepository.getMealsData()
+                val result = mealsRepository.getMealsData()[0]
                 mealsUiState = MealsUiState.Success(
-                    "Success ${listResult.size} Meals data received"
+                    result
                 )
             } catch (e: IOException) {
                 mealsUiState = MealsUiState.Error

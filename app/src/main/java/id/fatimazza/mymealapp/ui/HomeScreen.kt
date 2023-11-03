@@ -32,11 +32,14 @@ fun HomeScreen(
     when (mealsUiState) {
         is MealsUiState.Loading ->
             LoadingScreen(modifier.fillMaxSize())
+
         is MealsUiState.Success -> {
-            HomeResultScreen(
-                mealsUiState.meals
+            MealPhotoCard(
+                meals = mealsUiState.meals,
+                modifier = modifier
             )
         }
+
         is MealsUiState.Error -> {
             ErrorScreen(modifier.fillMaxSize())
         }

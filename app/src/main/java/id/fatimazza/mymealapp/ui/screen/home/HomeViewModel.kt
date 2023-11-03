@@ -1,4 +1,4 @@
-package id.fatimazza.mymealapp.ui
+package id.fatimazza.mymealapp.ui.screen.home
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

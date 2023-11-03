@@ -6,8 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import id.fatimazza.mymealapp.ui.FavoriteScreen
-import id.fatimazza.mymealapp.ui.HomeScreen
-import id.fatimazza.mymealapp.ui.MealsUiState
+import id.fatimazza.mymealapp.ui.screen.home.HomeScreen
+import id.fatimazza.mymealapp.ui.screen.home.MealsUiState
 
 /**
  * Provides Navigation graph for the application.

@@ -12,7 +12,6 @@ import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
     mealsViewModel: MealsViewModel = viewModel()
 ) {
     HomeResultScreen(mealsViewModel.mealsUiState)
@@ -20,14 +19,14 @@ fun HomeScreen(
 
 @Composable
 fun HomeResultScreen(
-    photos: String,
+    meals: String,
     modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = photos)
+        Text(text = meals)
     }
 }
 

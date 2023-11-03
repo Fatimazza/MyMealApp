@@ -5,10 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
-class MealViewModel() : ViewModel() {
+class MealsViewModel() : ViewModel() {
 
     /** The mutable State that stores the status of the most recent request */
-    var mealUiState: String by mutableStateOf("")
+    var mealsUiState: String by mutableStateOf("")
         private set
 
     init {
@@ -19,7 +19,7 @@ class MealViewModel() : ViewModel() {
      * Gets Meals information from the Meals API Retrofit service
      */
     fun getMealsData() {
-        mealUiState = "Set the Mars API status response here!"
+        mealsUiState = "Set the Mars API status response here!"
     }
 
 }

@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import id.fatimazza.mymealapp.R
@@ -43,7 +44,7 @@ fun MyMealApp(
             )
         },
         bottomBar = {
-            BottomBar()
+            BottomBar(navController)
         },
         modifier = modifier
     ) {
@@ -53,6 +54,7 @@ fun MyMealApp(
 
 @Composable
 private fun BottomBar(
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     val navigationItems = listOf(
@@ -73,7 +75,15 @@ private fun BottomBar(
         for (navItem in navigationItems) {
             NavigationBarItem(
                 selected = false,
-                onClick = { },
+                onClick = {
+                    navController.navigate(navItem.screen.route) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        restoreState = true
+                        launchSingleTop = true
+                    }
+                },
                 icon = {
                     Icon(
                         imageVector = navItem.icon,

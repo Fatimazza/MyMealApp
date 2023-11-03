@@ -144,11 +144,19 @@ fun ErrorScreen(
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun ErrorScreenPreview() {
+    MyMealAppTheme {
+        ErrorScreen()
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview() {
+fun HomePhotoGridPreview() {
     MyMealAppTheme {
-        HomeResultScreen(meals = "Home")
+        val mockData = List(10) { MealsItem("$it", "", "") }
+        PhotosGridScreen(mockData)
     }
 }

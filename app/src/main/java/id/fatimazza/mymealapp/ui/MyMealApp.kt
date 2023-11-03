@@ -37,7 +37,7 @@ fun MyMealApp(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
-    val mealsViewModel: MealsViewModel = viewModel()
+    val mealsViewModel: MealsViewModel = viewModel(factory = MealsViewModel.Factory)
     Scaffold(
         topBar = {
             TopAppBar(

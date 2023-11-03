@@ -1,8 +1,11 @@
 package id.fatimazza.mymealapp.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,7 +32,7 @@ fun HomeScreen(
             )
         }
         is MealsUiState.Error -> {
-            LoadingScreen(modifier.fillMaxSize())
+            ErrorScreen(modifier.fillMaxSize())
         }
     }
 }
@@ -55,6 +58,27 @@ fun HomeResultScreen(
         Text(text = meals)
     }
 }
+
+@Composable
+fun ErrorScreen(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(
+                id = R.drawable.ic_connection_error
+            ), contentDescription = ""
+        )
+        Text(
+            text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp)
+        )
+    }
+}
+
 
 @Preview(showBackground = true)
 @Composable

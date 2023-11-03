@@ -7,7 +7,7 @@ import retrofit2.http.GET
  * Retrofit service object for creating api calls
  */
 interface MealsApiService {
-    @GET("v1/1/filter.php?a=Japanese")
+    @GET("v1/1/filter.php?c=Beef")
     suspend fun getMeals(): MealsResponse
 }
 

@@ -29,6 +29,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import id.fatimazza.mymealapp.R
 import id.fatimazza.mymealapp.model.MealsItem
+import id.fatimazza.mymealapp.ui.components.MenuItem
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
 @Composable
@@ -81,7 +82,6 @@ fun PhotosGridScreen(
             MealPhotoCard(
                 meal,
                 modifier = modifier
-                    .padding(4.dp)
                     .fillMaxWidth()
                     .aspectRatio(1.0f)
             )
@@ -93,22 +93,11 @@ fun PhotosGridScreen(
 fun MealPhotoCard(
     meals: MealsItem, modifier: Modifier = Modifier
 ) {
-    Card(
-        modifier = modifier,
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-    ) {
-        AsyncImage(
-            model = ImageRequest.Builder(context = LocalContext.current)
-                .data(meals.strMealThumb)
-                .crossfade(true)
-                .build(),
-            contentDescription = stringResource(R.string.meals_photo),
-            contentScale = ContentScale.Crop,
-            error = painterResource(R.drawable.ic_broken_image),
-            placeholder = painterResource(R.drawable.loading_image),
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
+    MenuItem(
+        id = meals.idMeal,
+        image = meals.strMealThumb,
+        title = meals.strMeal
+    )
 }
 
 @Composable

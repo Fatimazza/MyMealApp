@@ -4,10 +4,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,7 +38,7 @@ fun HomeScreen(
             LoadingScreen(modifier.fillMaxSize())
 
         is MealsUiState.Success -> {
-            MealPhotoCard(
+            PhotosGridScreen(
                 meals = mealsUiState.meals,
                 modifier = modifier
             )
@@ -53,6 +57,27 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
         painter = painterResource(R.drawable.loading_image),
         contentDescription = stringResource(R.string.loading)
     )
+}
+
+/**
+ * The home screen displaying photo grid.
+ */
+@Composable
+fun PhotosGridScreen(
+    meals: List<MealsItem>,
+    modifier: Modifier = Modifier
+) {
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(150.dp),
+        modifier = modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(4.dp)
+    ) {
+        items(
+            items = meals, key = { meal -> meal.idMeal }
+        ) { meal ->
+            MealPhotoCard(meal)
+        }
+    }
 }
 
 @Composable

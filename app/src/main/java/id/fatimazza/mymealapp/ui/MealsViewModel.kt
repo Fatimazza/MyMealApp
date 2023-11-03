@@ -20,7 +20,7 @@ import java.io.IOException
  * UI state for the Home screen
  */
 sealed interface MealsUiState {
-    data class Success(val meals: MealsItem) : MealsUiState
+    data class Success(val meals: List<MealsItem>) : MealsUiState
     object Error : MealsUiState
     object Loading : MealsUiState
 }
@@ -43,7 +43,7 @@ class MealsViewModel(
     private fun getMealsData() {
         viewModelScope.launch {
             try {
-                val result = mealsRepository.getMealsData()[0]
+                val result = mealsRepository.getMealsData()
                 mealsUiState = MealsUiState.Success(
                     result
                 )

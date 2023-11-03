@@ -5,7 +5,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
 private const val BASE_URL =
-    "https://android-kotlin-fun-mars-server.appspot.com"
+    "https://www.themealdb.com/api/json/"
 
 /**
  * Use the Retrofit builder to build a retrofit object
@@ -19,7 +19,7 @@ private val retrofit = Retrofit.Builder()
  * Retrofit service object for creating api calls
  */
 interface MealsApiService {
-    @GET("photos")
+    @GET("v1/1/filter.php?a=Japanese")
     suspend fun getMeals(): String
 }
 

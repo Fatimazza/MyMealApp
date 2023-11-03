@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import id.fatimazza.mymealapp.data.NetworkMealsRepository
 import id.fatimazza.mymealapp.network.MealsApi
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -35,9 +36,9 @@ class MealsViewModel() : ViewModel() {
     private fun getMealsData() {
         viewModelScope.launch {
             try {
-                val listResult = MealsApi.retrofitService.getMeals().meals
+                val mealsRepository = NetworkMealsRepository()
                 mealsUiState = MealsUiState.Success(
-                    "Success ${listResult.size} Meals data received"
+                    "Success ${mealsRepository.getMealsData().size} Meals data received"
                 )
             } catch (e: IOException) {
                 mealsUiState = MealsUiState.Error

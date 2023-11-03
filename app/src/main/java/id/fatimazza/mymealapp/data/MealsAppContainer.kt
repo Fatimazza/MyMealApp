@@ -38,8 +38,11 @@ class DefaultAppContainer : MealsAppContainer {
             retrofit.create(MealsApiService::class.java)
         }
 
-    override val mealsRepository: MealsRepository
-        get() = TODO("Not yet implemented")
-
+    /**
+     * DI implementation for [MealsRepository]
+     */
+    override val mealsRepository: MealsRepository by lazy {
+        NetworkMealsRepository(retrofitService)
+    }
 }
 

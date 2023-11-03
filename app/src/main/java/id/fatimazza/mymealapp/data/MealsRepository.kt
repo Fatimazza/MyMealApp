@@ -1,7 +1,6 @@
 package id.fatimazza.mymealapp.data
 
 import id.fatimazza.mymealapp.model.MealsItem
-import id.fatimazza.mymealapp.network.MealsApi
 import id.fatimazza.mymealapp.network.MealsApiService
 
 /**
@@ -14,8 +13,10 @@ interface MealsRepository {
 /**
  * Network Implementation of Repository that fetch Meals list from Meals Api.
  */
-class NetworkMealsRepository() : MealsRepository {
+class NetworkMealsRepository(
+    private val mealsApiService: MealsApiService
+) : MealsRepository {
     override suspend fun getMealsData(): List<MealsItem> {
-        return MealsApi.retrofitService.getMeals().meals
+        return mealsApiService.getMeals().meals
     }
 }

@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import id.fatimazza.mymealapp.ui.FavoriteScreen
+import id.fatimazza.mymealapp.ui.screen.detail.DetailScreen
 import id.fatimazza.mymealapp.ui.screen.home.HomeScreen
 import id.fatimazza.mymealapp.ui.screen.home.MealsUiState
 
@@ -25,11 +26,17 @@ fun MealNavHost(
     ) {
         composable(route = Screen.Home.route) {
             HomeScreen(
-                mealsUiState = mealsUiState
+                mealsUiState = mealsUiState,
+                navigateToDetail = { menuId ->
+                    navController.navigate(Screen.DetailMenu.createRoute(menuId))
+                }
             )
         }
         composable(route = Screen.Favorite.route) {
             FavoriteScreen()
+        }
+        composable(route = Screen.DetailMenu.route) {
+            DetailScreen()
         }
     }
 }

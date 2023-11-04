@@ -1,6 +1,7 @@
 package id.fatimazza.mymealapp.ui.screen.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,7 +30,8 @@ import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 @Composable
 fun HomeScreen(
     mealsUiState: MealsUiState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToDetail: (String) -> Unit,
 ) {
     when (mealsUiState) {
         is MealsUiState.Loading ->
@@ -38,7 +40,8 @@ fun HomeScreen(
         is MealsUiState.Success -> {
             PhotosGridScreen(
                 meals = mealsUiState.meals,
-                modifier = modifier
+                modifier = modifier,
+                navigateToDetail = navigateToDetail,
             )
         }
 
@@ -63,7 +66,8 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 @Composable
 fun PhotosGridScreen(
     meals: List<MealsItem>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToDetail: (String) -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(150.dp),
@@ -75,9 +79,7 @@ fun PhotosGridScreen(
         ) { meal ->
             MealPhotoCard(
                 meal,
-                modifier = modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1.0f)
+                navigateToDetail = navigateToDetail,
             )
         }
     }
@@ -85,12 +87,16 @@ fun PhotosGridScreen(
 
 @Composable
 fun MealPhotoCard(
-    meals: MealsItem, modifier: Modifier = Modifier
+    meals: MealsItem,
+    navigateToDetail: (String) -> Unit,
 ) {
     MenuItem(
         id = meals.idMeal,
         image = meals.strMealThumb,
-        title = meals.strMeal
+        title = meals.strMeal,
+        modifier = Modifier.clickable {
+            navigateToDetail(meals.idMeal)
+        }
     )
 }
 
@@ -140,6 +146,9 @@ fun ErrorScreenPreview() {
 fun HomePhotoGridPreview() {
     MyMealAppTheme {
         val mockData = List(10) { MealsItem("$it", "", "") }
-        PhotosGridScreen(mockData)
+        PhotosGridScreen(
+            meals = mockData,
+            navigateToDetail = {}
+        )
     }
 }

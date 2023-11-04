@@ -1,5 +1,6 @@
 package id.fatimazza.mymealapp.data
 
+import id.fatimazza.mymealapp.model.DetailItem
 import id.fatimazza.mymealapp.model.MealsItem
 import id.fatimazza.mymealapp.network.MealsApiService
 
@@ -8,6 +9,7 @@ import id.fatimazza.mymealapp.network.MealsApiService
  */
 interface MealsRepository {
     suspend fun getMealsData(): List<MealsItem>
+    suspend fun getDetailData(id: Int): List<DetailItem>
 }
 
 /**
@@ -18,5 +20,9 @@ class NetworkMealsRepository(
 ) : MealsRepository {
     override suspend fun getMealsData(): List<MealsItem> {
         return mealsApiService.getMeals().meals
+    }
+
+    override suspend fun getDetailData(id: Int): List<DetailItem> {
+        return mealsApiService.getRecipeDetails(id).meals
     }
 }

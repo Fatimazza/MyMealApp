@@ -6,6 +6,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import id.fatimazza.mymealapp.MyMealsApplication
+import id.fatimazza.mymealapp.ui.screen.detail.DetailViewModel
 import id.fatimazza.mymealapp.ui.screen.home.HomeViewModel
 
 
@@ -17,6 +18,10 @@ object ViewModelProvider {
         // Initializer for HomeViewModel
         initializer {
             HomeViewModel(mealsApplication().container.mealsRepository)
+        }
+        // Initializer for DetailViewModel
+        initializer {
+            DetailViewModel(mealsApplication().container.mealsRepository)
         }
     }
 }

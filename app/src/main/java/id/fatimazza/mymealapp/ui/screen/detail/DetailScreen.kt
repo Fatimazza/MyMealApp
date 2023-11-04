@@ -70,7 +70,7 @@ fun DetailScreen(
 fun DetailContent(
     detailMeals: List<DetailItem>,
     modifier: Modifier = Modifier,
-    onBackPressed: () -> Unit
+    onBackPressed: () -> Unit,
 ) {
     Box(modifier = modifier) {
         LazyColumn(
@@ -83,6 +83,9 @@ fun DetailContent(
                 DetailTopBar(
                     detailMeals = detailMeals,
                     onBackPressed,
+                    onFavPressed = {
+                                  
+                    },
                     Modifier
                         .fillMaxWidth()
                         .padding(bottom = dimensionResource(R.dimen.detail_topbar_padding_bottom))

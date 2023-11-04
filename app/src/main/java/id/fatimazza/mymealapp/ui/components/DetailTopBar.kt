@@ -25,6 +25,7 @@ import id.fatimazza.mymealapp.data.model.DetailItem
 fun DetailTopBar(
     detailMeals: List<DetailItem>,
     onBackButtonClicked: () -> Unit,
+    onFavPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -55,7 +56,7 @@ fun DetailTopBar(
             )
         }
         IconButton(
-            onClick = { },
+            onClick = onFavPressed,
             modifier = Modifier
                 .padding(horizontal = dimensionResource(R.dimen.detail_topbar_back_button_padding_horizontal))
                 .background(MaterialTheme.colorScheme.surface, shape = CircleShape),

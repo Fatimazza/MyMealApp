@@ -28,25 +28,49 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import id.fatimazza.mymealapp.R
+import id.fatimazza.mymealapp.model.DetailItem
 import id.fatimazza.mymealapp.ui.components.DetailTopBar
+import id.fatimazza.mymealapp.ui.screen.ViewModelProvider
+import id.fatimazza.mymealapp.ui.screen.home.ErrorScreen
+import id.fatimazza.mymealapp.ui.screen.home.LoadingScreen
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
 @Composable
 fun DetailScreen(
+    menuId: String,
+    modifier: Modifier = Modifier,
     onBackPressed: () -> Unit,
+    viewModel: DetailViewModel = viewModel(factory = ViewModelProvider.Factory)
 ) {
-    DetailContent(
-        onBackPressed = onBackPressed
-    )
+    when (viewModel.detailUiState) {
+        is DetailUiState.Loading -> {
+            LoadingScreen(modifier.fillMaxSize())
+            viewModel.getDetailData(menuId.toInt())
+        }
+
+        is DetailUiState.Success -> {
+            DetailContent(
+                detailMeals = (viewModel.detailUiState as DetailUiState.Success).meals,
+                onBackPressed = onBackPressed
+            )
+        }
+
+        is DetailUiState.Error -> {
+            ErrorScreen(modifier.fillMaxSize())
+        }
+    }
+
 }
 
 @Composable
 fun DetailContent(
-    onBackPressed: () -> Unit,
-    modifier: Modifier = Modifier
+    detailMeals: List<DetailItem>,
+    modifier: Modifier = Modifier,
+    onBackPressed: () -> Unit
 ) {
     Box(modifier = modifier) {
         LazyColumn(
@@ -63,6 +87,7 @@ fun DetailContent(
                         .padding(bottom = dimensionResource(R.dimen.detail_topbar_padding_bottom))
                 )
                 DetailContentCard(
+                    detailMeals = detailMeals,
                     modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.detail_card_outer_padding_horizontal))
                 )
             }
@@ -72,6 +97,7 @@ fun DetailContent(
 
 @Composable
 private fun DetailContentCard(
+    detailMeals: List<DetailItem>,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -85,7 +111,7 @@ private fun DetailContentCard(
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(context = LocalContext.current)
-                    .data("image")
+                    .data(detailMeals[0].strMealThumb)
                     .crossfade(true)
                     .build(),
                 contentDescription = stringResource(R.string.meals_photo),
@@ -111,9 +137,12 @@ private fun DetailContentCard(
                 )
             )
             Text(
-                text = stringResource(R.string.lorem_ipsum),
+                text = detailMeals[0].strIngredient1.toString(),
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Justify
+            )
+            Spacer(
+                modifier = modifier.height(8.dp)
             )
             Text(
                 text = stringResource(R.string.instruction),
@@ -123,7 +152,7 @@ private fun DetailContentCard(
                 )
             )
             Text(
-                text = stringResource(R.string.lorem_ipsum),
+                text = detailMeals[0].strInstructions.toString(),
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Justify
             )
@@ -136,6 +165,7 @@ private fun DetailContentCard(
 fun DetailScreenPreview() {
     MyMealAppTheme {
         DetailScreen(
+            menuId = "0",
             onBackPressed = {}
         )
     }

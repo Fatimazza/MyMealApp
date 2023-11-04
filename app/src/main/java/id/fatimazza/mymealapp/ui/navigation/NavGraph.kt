@@ -3,8 +3,10 @@ package id.fatimazza.mymealapp.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import id.fatimazza.mymealapp.ui.FavoriteScreen
 import id.fatimazza.mymealapp.ui.screen.detail.DetailScreen
 import id.fatimazza.mymealapp.ui.screen.home.HomeScreen
@@ -35,8 +37,13 @@ fun MealNavHost(
         composable(route = Screen.Favorite.route) {
             FavoriteScreen()
         }
-        composable(route = Screen.DetailMenu.route) {
+        composable(
+            route = Screen.DetailMenu.route,
+            arguments = listOf(navArgument("menuId") { type = NavType.StringType }),
+        ) {
+            val id = it.arguments?.getString("menuId") ?: "0"
             DetailScreen(
+                menuId = id,
                 onBackPressed = { navController.navigateUp() }
             )
         }

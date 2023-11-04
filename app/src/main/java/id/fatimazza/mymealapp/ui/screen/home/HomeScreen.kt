@@ -3,14 +3,11 @@ package id.fatimazza.mymealapp.ui.screen.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -24,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import id.fatimazza.mymealapp.R
 import id.fatimazza.mymealapp.model.MealsItem
+import id.fatimazza.mymealapp.ui.components.LoadingScreen
 import id.fatimazza.mymealapp.ui.components.MenuItem
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
@@ -49,15 +47,6 @@ fun HomeScreen(
             ErrorScreen(modifier.fillMaxSize())
         }
     }
-}
-
-@Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
-    Image(
-        modifier = modifier.size(200.dp),
-        painter = painterResource(R.drawable.loading_image),
-        contentDescription = stringResource(R.string.loading)
-    )
 }
 
 /**

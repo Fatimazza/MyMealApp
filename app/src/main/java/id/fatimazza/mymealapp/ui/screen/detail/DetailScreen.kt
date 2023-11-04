@@ -2,17 +2,25 @@ package id.fatimazza.mymealapp.ui.screen.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import id.fatimazza.mymealapp.R
 import id.fatimazza.mymealapp.ui.components.DetailTopBar
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
@@ -60,7 +68,40 @@ private fun DetailContentCard(
         modifier = modifier,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     ) {
-        
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(R.dimen.detail_card_inner_padding))
+        ) {
+            
+            Spacer(
+                modifier = modifier.height(8.dp)
+            )
+            Text(
+                text = stringResource(R.string.ingredients),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodyLarge.copy(
+                    fontWeight = FontWeight.ExtraBold
+                )
+            )
+            Text(
+                text = stringResource(R.string.lorem_ipsum),
+                style = MaterialTheme.typography.bodyMedium,
+                textAlign = TextAlign.Justify
+            )
+            Text(
+                text = stringResource(R.string.instruction),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodyLarge.copy(
+                    fontWeight = FontWeight.ExtraBold
+                )
+            )
+            Text(
+                text = stringResource(R.string.lorem_ipsum),
+                style = MaterialTheme.typography.bodyMedium,
+                textAlign = TextAlign.Justify
+            )
+        }
     }
 }
 

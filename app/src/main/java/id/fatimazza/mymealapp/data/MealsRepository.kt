@@ -2,7 +2,7 @@ package id.fatimazza.mymealapp.data
 
 import id.fatimazza.mymealapp.data.model.DetailItem
 import id.fatimazza.mymealapp.data.model.MealsItem
-import id.fatimazza.mymealapp.network.MealsApiService
+import id.fatimazza.mymealapp.data.network.MealsApiService
 
 /**
  * Repository that fetch meals list from Meals Api.

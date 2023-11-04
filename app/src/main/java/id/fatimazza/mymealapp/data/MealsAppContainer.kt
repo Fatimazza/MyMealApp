@@ -1,7 +1,7 @@
 package id.fatimazza.mymealapp.data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import id.fatimazza.mymealapp.network.MealsApiService
+import id.fatimazza.mymealapp.data.network.MealsApiService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit

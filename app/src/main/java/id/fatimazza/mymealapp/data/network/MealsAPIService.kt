@@ -1,4 +1,4 @@
-package id.fatimazza.mymealapp.network
+package id.fatimazza.mymealapp.data.network
 
 import id.fatimazza.mymealapp.data.model.DetailResponse
 import id.fatimazza.mymealapp.data.model.MealsResponse

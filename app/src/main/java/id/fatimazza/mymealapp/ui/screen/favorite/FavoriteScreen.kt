@@ -1,4 +1,4 @@
-package id.fatimazza.mymealapp.ui
+package id.fatimazza.mymealapp.ui.screen.favorite
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

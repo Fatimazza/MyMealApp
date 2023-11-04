@@ -7,7 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import id.fatimazza.mymealapp.ui.FavoriteScreen
+import id.fatimazza.mymealapp.ui.screen.favorite.FavoriteScreen
 import id.fatimazza.mymealapp.ui.screen.detail.DetailScreen
 import id.fatimazza.mymealapp.ui.screen.home.HomeScreen
 import id.fatimazza.mymealapp.ui.screen.home.MealsUiState

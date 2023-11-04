@@ -9,7 +9,7 @@ class MyMealsApplication : Application() {
     lateinit var container: MealsAppContainer
     override fun onCreate() {
         super.onCreate()
-        container = DefaultAppContainer()
+        container = DefaultAppContainer(this)
     }
 }
 

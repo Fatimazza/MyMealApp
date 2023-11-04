@@ -1,6 +1,8 @@
 package id.fatimazza.mymealapp.data
 
+import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import id.fatimazza.mymealapp.data.local.FavoriteMealsDatabase
 import id.fatimazza.mymealapp.data.network.MealsApiService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -11,6 +13,7 @@ import retrofit2.Retrofit
  */
 interface MealsAppContainer {
     val mealsRepository: MealsRepository
+    val favMealsRepository: FavMealsRepository
 }
 
 /**
@@ -18,7 +21,7 @@ interface MealsAppContainer {
  *
  * Variables are initialized lazily and the same instance is shared across the whole app.
  */
-class DefaultAppContainer : MealsAppContainer {
+class DefaultAppContainer(private val context: Context) : MealsAppContainer {
 
     private val BASE_URL =
         "https://www.themealdb.com/api/json/"
@@ -43,6 +46,11 @@ class DefaultAppContainer : MealsAppContainer {
      */
     override val mealsRepository: MealsRepository by lazy {
         NetworkMealsRepository(retrofitService)
+    }
+    override val favMealsRepository: FavMealsRepository by lazy {
+        OfflineMealsRepository(
+            FavoriteMealsDatabase.getDatabase(context).itemDao()
+        )
     }
 }
 

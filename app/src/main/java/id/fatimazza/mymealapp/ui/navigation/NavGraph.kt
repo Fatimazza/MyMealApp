@@ -36,7 +36,9 @@ fun MealNavHost(
             FavoriteScreen()
         }
         composable(route = Screen.DetailMenu.route) {
-            DetailScreen()
+            DetailScreen(
+                onBackPressed = { navController.navigateUp() }
+            )
         }
     }
 }

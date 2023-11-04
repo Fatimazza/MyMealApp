@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -37,9 +36,10 @@ import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
 @Composable
 fun DetailScreen(
+    onBackPressed: () -> Unit,
 ) {
     DetailContent(
-        onBackPressed = {}
+        onBackPressed = onBackPressed
     )
 }
 
@@ -135,6 +135,8 @@ private fun DetailContentCard(
 @Composable
 fun DetailScreenPreview() {
     MyMealAppTheme {
-        DetailScreen()
+        DetailScreen(
+            onBackPressed = {}
+        )
     }
 }

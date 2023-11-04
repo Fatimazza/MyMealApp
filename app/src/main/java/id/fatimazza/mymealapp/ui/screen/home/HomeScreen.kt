@@ -101,19 +101,6 @@ fun MealPhotoCard(
 }
 
 @Composable
-fun HomeResultScreen(
-    meals: String,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = meals)
-    }
-}
-
-@Composable
 fun ErrorScreen(
     modifier: Modifier = Modifier
 ) {

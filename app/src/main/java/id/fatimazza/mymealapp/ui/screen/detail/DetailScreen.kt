@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -42,8 +44,23 @@ fun DetailContent(
                         .fillMaxWidth()
                         .padding(bottom = dimensionResource(R.dimen.detail_topbar_padding_bottom))
                 )
+                DetailContentCard(
+                    modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.detail_card_outer_padding_horizontal))
+                )
             }
         }
+    }
+}
+
+@Composable
+private fun DetailContentCard(
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+    ) {
+        
     }
 }
 

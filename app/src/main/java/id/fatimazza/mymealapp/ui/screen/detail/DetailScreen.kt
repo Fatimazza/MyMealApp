@@ -34,9 +34,9 @@ import coil.request.ImageRequest
 import id.fatimazza.mymealapp.R
 import id.fatimazza.mymealapp.model.DetailItem
 import id.fatimazza.mymealapp.ui.components.DetailTopBar
+import id.fatimazza.mymealapp.ui.components.ErrorScreen
 import id.fatimazza.mymealapp.ui.components.LoadingScreen
 import id.fatimazza.mymealapp.ui.screen.ViewModelProvider
-import id.fatimazza.mymealapp.ui.screen.home.ErrorScreen
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
 @Composable

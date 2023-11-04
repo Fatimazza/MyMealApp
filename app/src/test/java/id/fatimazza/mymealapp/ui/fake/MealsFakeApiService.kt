@@ -1,7 +1,7 @@
 package id.fatimazza.mymealapp.ui.fake
 
-import id.fatimazza.mymealapp.model.MealsItem
-import id.fatimazza.mymealapp.model.MealsResponse
+import id.fatimazza.mymealapp.data.model.MealsItem
+import id.fatimazza.mymealapp.data.model.MealsResponse
 import id.fatimazza.mymealapp.network.MealsApiService
 
 class MealsFakeApiService : MealsApiService {

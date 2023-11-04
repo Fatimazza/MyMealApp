@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import id.fatimazza.mymealapp.model.MealsItem
+import id.fatimazza.mymealapp.data.model.MealsItem
 import id.fatimazza.mymealapp.ui.components.ErrorScreen
 import id.fatimazza.mymealapp.ui.components.LoadingScreen
 import id.fatimazza.mymealapp.ui.components.MenuItem

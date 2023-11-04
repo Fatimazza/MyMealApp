@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import id.fatimazza.mymealapp.data.MealsRepository
-import id.fatimazza.mymealapp.model.DetailItem
+import id.fatimazza.mymealapp.data.model.DetailItem
 import kotlinx.coroutines.launch
 import java.io.IOException
 

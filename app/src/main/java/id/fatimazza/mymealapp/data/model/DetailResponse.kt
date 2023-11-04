@@ -1,4 +1,4 @@
-package id.fatimazza.mymealapp.model
+package id.fatimazza.mymealapp.data.model
 
 import kotlinx.serialization.Serializable
 

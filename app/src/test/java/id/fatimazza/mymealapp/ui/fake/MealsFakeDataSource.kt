@@ -1,7 +1,7 @@
 package id.fatimazza.mymealapp.ui.fake
 
-import id.fatimazza.mymealapp.model.MealsItem
-import id.fatimazza.mymealapp.model.MealsResponse
+import id.fatimazza.mymealapp.data.model.MealsItem
+import id.fatimazza.mymealapp.data.model.MealsResponse
 
 object MealsFakeDataSource {
     const val idOne = "51235"

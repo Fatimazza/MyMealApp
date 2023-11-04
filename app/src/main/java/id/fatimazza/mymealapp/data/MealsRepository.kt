@@ -1,7 +1,7 @@
 package id.fatimazza.mymealapp.data
 
-import id.fatimazza.mymealapp.model.DetailItem
-import id.fatimazza.mymealapp.model.MealsItem
+import id.fatimazza.mymealapp.data.model.DetailItem
+import id.fatimazza.mymealapp.data.model.MealsItem
 import id.fatimazza.mymealapp.network.MealsApiService
 
 /**

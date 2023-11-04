@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import id.fatimazza.mymealapp.R
-import id.fatimazza.mymealapp.model.DetailItem
+import id.fatimazza.mymealapp.data.model.DetailItem
 
 @Composable
 fun DetailTopBar(

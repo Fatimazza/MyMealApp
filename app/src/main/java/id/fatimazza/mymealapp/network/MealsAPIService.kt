@@ -1,7 +1,7 @@
 package id.fatimazza.mymealapp.network
 
-import id.fatimazza.mymealapp.model.DetailResponse
-import id.fatimazza.mymealapp.model.MealsResponse
+import id.fatimazza.mymealapp.data.model.DetailResponse
+import id.fatimazza.mymealapp.data.model.MealsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

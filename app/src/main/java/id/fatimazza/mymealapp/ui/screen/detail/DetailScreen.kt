@@ -32,7 +32,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import id.fatimazza.mymealapp.R
-import id.fatimazza.mymealapp.model.DetailItem
+import id.fatimazza.mymealapp.data.model.DetailItem
 import id.fatimazza.mymealapp.ui.components.DetailTopBar
 import id.fatimazza.mymealapp.ui.components.ErrorScreen
 import id.fatimazza.mymealapp.ui.components.LoadingScreen

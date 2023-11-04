@@ -12,7 +12,6 @@ class FavoriteMealsItem(
     val favMealId: Int = 0,
     val idMeal: String,
     val strMeal: String,
-    val strMealThumb: String,
-    val quantity: Int
+    val strMealThumb: String
 )
 

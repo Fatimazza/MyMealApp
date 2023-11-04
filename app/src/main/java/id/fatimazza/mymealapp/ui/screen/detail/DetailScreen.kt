@@ -122,7 +122,7 @@ private fun DetailContentCard(
                 modifier = modifier
                     .fillMaxWidth()
                     .border(
-                        BorderStroke(4.dp, MaterialTheme.colorScheme.primary),
+                        BorderStroke(4.dp, MaterialTheme.colorScheme.inversePrimary),
                         RoundedCornerShape(15.dp)
                     )
                     .clip(RoundedCornerShape(15.dp))

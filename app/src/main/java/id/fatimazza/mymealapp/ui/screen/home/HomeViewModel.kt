@@ -4,12 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import id.fatimazza.mymealapp.MyMealsApplication
 import id.fatimazza.mymealapp.data.MealsRepository
 import id.fatimazza.mymealapp.model.MealsItem
 import kotlinx.coroutines.launch
@@ -52,18 +47,4 @@ class HomeViewModel(
             }
         }
     }
-
-    /**
-     * Factory for [HomeViewModel] that takes [MealsRepository] as a dependency
-     */
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val application = (this[APPLICATION_KEY] as MyMealsApplication)
-                val mealsRepository = application.container.mealsRepository
-                HomeViewModel(mealsRepository = mealsRepository)
-            }
-        }
-    }
-
 }

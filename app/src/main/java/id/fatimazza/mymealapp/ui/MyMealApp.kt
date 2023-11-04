@@ -29,6 +29,7 @@ import id.fatimazza.mymealapp.R
 import id.fatimazza.mymealapp.ui.navigation.MealNavHost
 import id.fatimazza.mymealapp.ui.navigation.NavigationItem
 import id.fatimazza.mymealapp.ui.navigation.Screen
+import id.fatimazza.mymealapp.ui.screen.ViewModelProvider
 import id.fatimazza.mymealapp.ui.screen.home.HomeViewModel
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
@@ -40,7 +41,7 @@ fun MyMealApp(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
-    val mealsViewModel: HomeViewModel = viewModel(factory = HomeViewModel.Factory)
+    val mealsViewModel: HomeViewModel = viewModel(factory = ViewModelProvider.Factory)
     Scaffold(
         topBar = {
             TopAppBar(

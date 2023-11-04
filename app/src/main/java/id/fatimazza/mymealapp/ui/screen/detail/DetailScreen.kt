@@ -81,6 +81,7 @@ fun DetailContent(
         ) {
             item {
                 DetailTopBar(
+                    detailMeals = detailMeals,
                     onBackPressed,
                     Modifier
                         .fillMaxWidth()

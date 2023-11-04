@@ -19,9 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import id.fatimazza.mymealapp.R
+import id.fatimazza.mymealapp.model.DetailItem
 
 @Composable
 fun DetailTopBar(
+    detailMeals: List<DetailItem>,
     onBackButtonClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -46,7 +48,8 @@ fun DetailTopBar(
                 .weight(1f)
         ) {
             Text(
-                text = stringResource(R.string.app_name),
+                text = detailMeals[0].strMeal,
+                maxLines = 2,
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import id.fatimazza.mymealapp.MyMealsApplication
 import id.fatimazza.mymealapp.ui.screen.favorite.FavoriteViewModel
 import id.fatimazza.mymealapp.ui.screen.detail.DetailViewModel
+import id.fatimazza.mymealapp.ui.screen.detail.FavoriteDetailViewModel
 import id.fatimazza.mymealapp.ui.screen.home.HomeViewModel
 
 
@@ -27,6 +28,10 @@ object ViewModelProvider {
         // Initializer for FavoriteViewModel
         initializer {
             FavoriteViewModel(mealsApplication().container.favMealsRepository)
+        }
+        // Initializer for FavoriteDetailViewModel
+        initializer {
+            FavoriteDetailViewModel(mealsApplication().container.favMealsRepository)
         }
     }
 }

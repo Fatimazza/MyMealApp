@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -20,12 +21,14 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import id.fatimazza.mymealapp.R
 import id.fatimazza.mymealapp.data.model.DetailItem
+import id.fatimazza.mymealapp.ui.screen.detail.FavoriteMealUiState
 
 @Composable
 fun DetailTopBar(
     detailMeals: List<DetailItem>,
     onBackButtonClicked: () -> Unit,
     onFavPressed: () -> Unit,
+    itemUiState: FavoriteMealUiState,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -62,7 +65,7 @@ fun DetailTopBar(
                 .background(MaterialTheme.colorScheme.surface, shape = CircleShape),
         ) {
             Icon(
-                imageVector = Icons.Default.FavoriteBorder,
+                imageVector = if (itemUiState.isEntryValid) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                 contentDescription = stringResource(id = R.string.navigation_back)
             )
         }

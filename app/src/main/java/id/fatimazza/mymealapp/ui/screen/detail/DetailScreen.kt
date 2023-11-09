@@ -100,6 +100,7 @@ fun DetailContent(
                                 favDetailViewModel.saveItem()
                             }
                     },
+                    itemUiState = favDetailViewModel.favMealUiState,
                     Modifier
                         .fillMaxWidth()
                         .padding(bottom = dimensionResource(R.dimen.detail_topbar_padding_bottom))

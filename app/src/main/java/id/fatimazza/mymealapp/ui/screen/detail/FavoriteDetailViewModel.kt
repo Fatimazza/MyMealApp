@@ -11,40 +11,41 @@ import id.fatimazza.mymealapp.data.local.FavoriteMealsItem
  * ViewModel to validate and insert items in the Room database.
  */
 class FavoriteDetailViewModel(private val favMealsRepository: FavMealsRepository) : ViewModel() {
+
     /**
      * Holds current item ui state
      */
-    var favDetailUiState by mutableStateOf(InventoryItemUiState())
+    var favMealUiState by mutableStateOf(FavoriteMealUiState())
         private set
 
     /**
-     * Update the item in the [ItemsRepository]'s data source
+     * Update the item in the [FavMealsRepository]'s data source
      */
     suspend fun updateItem() {
-        if (validateInput(favDetailUiState.itemDetails)) {
-            favMealsRepository.updateItem(favDetailUiState.itemDetails.toItem())
+        if (validateInput(favMealUiState.favMealDetails)) {
+            favMealsRepository.updateItem(favMealUiState.favMealDetails.toItem())
         }
     }
 
     /**
-     * Updates the [favDetailUiState] with the value provided in the argument. This method also triggers
-     * a validation for input values.
+     * Updates the [MealUiState] with the value provided in the argument.
+     * This method also triggers a validation for input values.
      */
-    fun updateUiState(itemDetails: FavoriteItemDetails) {
-        favDetailUiState =
-            InventoryItemUiState(
-                itemDetails = itemDetails,
-                isEntryValid = validateInput(itemDetails)
+    fun updateUiState(favMealDetails: FavoriteMealDetails) {
+        favMealUiState =
+            FavoriteMealUiState(
+                favMealDetails = favMealDetails,
+                isEntryValid = validateInput(favMealDetails)
             )
     }
 
     suspend fun saveItem() {
         if (validateInput()) {
-            favMealsRepository.insertItem(favDetailUiState.itemDetails.toItem())
+            favMealsRepository.insertItem(favMealUiState.favMealDetails.toItem())
         }
     }
 
-    private fun validateInput(uiState: FavoriteItemDetails = favDetailUiState.itemDetails): Boolean {
+    private fun validateInput(uiState: FavoriteMealDetails = favMealUiState.favMealDetails): Boolean {
         return with(uiState) {
             idMeal.isNotBlank() && strMeal.isNotBlank() && strMealThumb.isNotBlank()
         }
@@ -54,12 +55,12 @@ class FavoriteDetailViewModel(private val favMealsRepository: FavMealsRepository
 /**
  * Represents Ui State for an Item.
  */
-data class InventoryItemUiState(
-    val itemDetails: FavoriteItemDetails = FavoriteItemDetails(),
+data class FavoriteMealUiState(
+    val favMealDetails: FavoriteMealDetails = FavoriteMealDetails(),
     val isEntryValid: Boolean = false
 )
 
-data class FavoriteItemDetails(
+data class FavoriteMealDetails(
     val favMealId: Int = 0,
     val idMeal: String = "",
     val strMeal: String = "",
@@ -67,11 +68,10 @@ data class FavoriteItemDetails(
 )
 
 /**
- * Extension function to convert [ItemDetails] to [Item]. If the value of [ItemDetails.price] is
- * not a valid [Double], then the price will be set to 0.0. Similarly if the value of
- * [ItemDetails.quantity] is not a valid [Int], then the quantity will be set to 0
+ * Extension function to convert [MealDetails] to [MealsItem].
+ * All value can be manipulated here, for example invalid value set to 0
  */
-fun FavoriteItemDetails.toItem(): FavoriteMealsItem = FavoriteMealsItem(
+fun FavoriteMealDetails.toItem(): FavoriteMealsItem = FavoriteMealsItem(
     favMealId = favMealId,
     idMeal = idMeal,
     strMeal = strMeal,
@@ -79,18 +79,18 @@ fun FavoriteItemDetails.toItem(): FavoriteMealsItem = FavoriteMealsItem(
 )
 
 /**
- * Extension function to convert [Item] to [ItemUiState]
+ * Extension function to convert [MealsItem] to [MealUiState]
  */
-fun FavoriteMealsItem.toItemUiState(isEntryValid: Boolean = false): InventoryItemUiState =
-    InventoryItemUiState(
-        itemDetails = this.toItemDetails(),
+fun FavoriteMealsItem.toItemUiState(isEntryValid: Boolean = false): FavoriteMealUiState =
+    FavoriteMealUiState(
+        favMealDetails = this.toItemDetails(),
         isEntryValid = isEntryValid
     )
 
 /**
- * Extension function to convert [Item] to [ItemDetails]
+ * Extension function to convert [MealsItem] to [MealItemDetails]
  */
-fun FavoriteMealsItem.toItemDetails(): FavoriteItemDetails = FavoriteItemDetails(
+fun FavoriteMealsItem.toItemDetails(): FavoriteMealDetails = FavoriteMealDetails(
     favMealId = favMealId,
     idMeal = idMeal,
     strMeal = strMeal,

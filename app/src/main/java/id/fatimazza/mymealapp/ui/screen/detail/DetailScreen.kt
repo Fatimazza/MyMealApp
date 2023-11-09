@@ -17,6 +17,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -38,6 +39,7 @@ import id.fatimazza.mymealapp.ui.components.ErrorScreen
 import id.fatimazza.mymealapp.ui.components.LoadingScreen
 import id.fatimazza.mymealapp.ui.screen.ViewModelProvider
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
+import kotlinx.coroutines.launch
 
 @Composable
 fun DetailScreen(
@@ -71,7 +73,9 @@ fun DetailContent(
     detailMeals: List<DetailItem>,
     modifier: Modifier = Modifier,
     onBackPressed: () -> Unit,
+    favDetailViewModel: FavoriteDetailViewModel = viewModel(factory = ViewModelProvider.Factory)
 ) {
+    val coroutineScope = rememberCoroutineScope()
     Box(modifier = modifier) {
         LazyColumn(
             modifier = Modifier
@@ -84,7 +88,17 @@ fun DetailContent(
                     detailMeals = detailMeals,
                     onBackPressed,
                     onFavPressed = {
-                                  
+                            coroutineScope.launch {
+                                favDetailViewModel.updateUiState(
+                                    FavoriteMealDetails(
+                                        0,
+                                        detailMeals[0].idMeal,
+                                        detailMeals[0].strMeal,
+                                        detailMeals[0].strMealThumb
+                                    )
+                                )
+                                favDetailViewModel.saveItem()
+                            }
                     },
                     Modifier
                         .fillMaxWidth()

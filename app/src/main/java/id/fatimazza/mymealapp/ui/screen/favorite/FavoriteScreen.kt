@@ -15,20 +15,28 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import id.fatimazza.mymealapp.R
 import id.fatimazza.mymealapp.data.local.FavoriteMealsItem
 import id.fatimazza.mymealapp.ui.components.MenuItem
+import id.fatimazza.mymealapp.ui.screen.ViewModelProvider
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 
 @Composable
 fun FavoriteScreen(
-    modifier: Modifier = Modifier
+    favViewModel: FavoriteViewModel = viewModel(factory = ViewModelProvider.Factory)
 ) {
-    FavoriteGridScreen(meals = listOf(), navigateToDetail = {})
+    val favUiState by favViewModel.favoriteUiState.collectAsState()
+    FavoriteGridScreen(
+        meals = favUiState.itemList,
+        navigateToDetail = {}
+    )
 }
 
 /**

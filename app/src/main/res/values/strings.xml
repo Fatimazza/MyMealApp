@@ -2,7 +2,7 @@
     <string name="app_name">MyMealsApp</string>
     <string name="app_title">My Meals App</string>
     <string name="menu_home">Home</string>
-    <string name="menu_favorite">Favorite</string>
+    <string name="menu_favorite">Favorites</string>
     <string name="loading">Loading</string>
     <string name="loading_failed">Failed to load</string>
     <string name="meals_photo">Meals photo</string>
@@ -10,4 +10,5 @@
     <string name="ingredients">Ingredients</string>
     <string name="instruction">Instruction</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="favorite_empty">\nOops!\nNo items in the Favorites.</string>
 </resources>

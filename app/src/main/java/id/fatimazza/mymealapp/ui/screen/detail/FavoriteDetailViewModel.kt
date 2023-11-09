@@ -4,8 +4,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import id.fatimazza.mymealapp.data.FavMealsRepository
 import id.fatimazza.mymealapp.data.local.FavoriteMealsItem
+import id.fatimazza.mymealapp.ui.navigation.Screen
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 /**
  * ViewModel to validate and insert items in the Room database.
@@ -17,6 +22,17 @@ class FavoriteDetailViewModel(private val favMealsRepository: FavMealsRepository
      */
     var favMealUiState by mutableStateOf(FavoriteMealUiState())
         private set
+
+    private val itemId: Int = Screen.DetailMenu.menuDetailId.toInt()
+
+    init {
+        viewModelScope.launch {
+            favMealUiState = favMealsRepository.getItemStream(itemId)
+                .filterNotNull()
+                .first()
+                .toItemUiState(true)
+        }
+    }
 
     /**
      * Update the item in the [FavMealsRepository]'s data source

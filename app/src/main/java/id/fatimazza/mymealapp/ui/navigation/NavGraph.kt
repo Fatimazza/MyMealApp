@@ -30,6 +30,7 @@ fun MealNavHost(
             HomeScreen(
                 mealsUiState = mealsUiState,
                 navigateToDetail = { menuId ->
+                    Screen.DetailMenu.createMenuDetailId(menuId)
                     navController.navigate(Screen.DetailMenu.createRoute(menuId))
                 }
             )

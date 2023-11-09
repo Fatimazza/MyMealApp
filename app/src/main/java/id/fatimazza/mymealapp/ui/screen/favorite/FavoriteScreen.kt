@@ -89,7 +89,7 @@ fun FavoriteMealPhotoCard(
 @Composable
 fun FavoriteScreenPreview() {
     MyMealAppTheme {
-        val mockData = List(10) { FavoriteMealsItem(it, "", "", "") }
-        FavoriteGridScreen(meals = mockData, navigateToDetail = {} )
+        val mockData = List(10) { FavoriteMealsItem(it, "$it", "", "") }
+        FavoriteGridScreen(meals = mockData, navigateToDetail = {})
     }
 }

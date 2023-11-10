@@ -66,6 +66,13 @@ class FavoriteDetailViewModel(private val favMealsRepository: FavMealsRepository
             idMeal.isNotBlank() && strMeal.isNotBlank() && strMealThumb.isNotBlank()
         }
     }
+
+    /**
+     * Deletes the item from the [FavMealsRepository]'s data source.
+     */
+    suspend fun deleteItem() {
+        favMealsRepository.deleteItem(favMealUiState.favMealDetails.toItem())
+    }
 }
 
 /**

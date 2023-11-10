@@ -76,6 +76,7 @@ fun DetailContent(
     favDetailViewModel: FavoriteDetailViewModel = viewModel(factory = ViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
+
     Box(modifier = modifier) {
         LazyColumn(
             modifier = Modifier
@@ -88,6 +89,12 @@ fun DetailContent(
                     detailMeals = detailMeals,
                     onBackPressed,
                     onFavPressed = {
+                        if (favDetailViewModel.favMealUiState.isEntryValid) {
+                            coroutineScope.launch {
+                                favDetailViewModel.deleteItem()
+                                favDetailViewModel.updateUiState(FavoriteMealDetails())
+                            }
+                        } else {
                             coroutineScope.launch {
                                 favDetailViewModel.updateUiState(
                                     FavoriteMealDetails(
@@ -99,6 +106,7 @@ fun DetailContent(
                                 )
                                 favDetailViewModel.saveItem()
                             }
+                        }
                     },
                     itemUiState = favDetailViewModel.favMealUiState,
                     Modifier

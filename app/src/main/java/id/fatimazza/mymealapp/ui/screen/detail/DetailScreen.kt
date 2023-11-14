@@ -37,13 +37,20 @@ import id.fatimazza.mymealapp.data.model.DetailItem
 import id.fatimazza.mymealapp.ui.components.DetailTopBar
 import id.fatimazza.mymealapp.ui.components.ErrorScreen
 import id.fatimazza.mymealapp.ui.components.LoadingScreen
+import id.fatimazza.mymealapp.ui.navigation.NavDestination
 import id.fatimazza.mymealapp.ui.screen.ViewModelProvider
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
 import kotlinx.coroutines.launch
 
+object DetailDestination : NavDestination {
+    override val route = "detail"
+    const val detailIdArg = "detailId"
+    val routeWithArgs = "$route/{$detailIdArg}"
+}
+
 @Composable
 fun DetailScreen(
-    menuId: String,
+    menuId: Int,
     modifier: Modifier = Modifier,
     onBackPressed: () -> Unit,
     viewModel: DetailViewModel = viewModel(factory = ViewModelProvider.Factory)
@@ -51,7 +58,7 @@ fun DetailScreen(
     when (viewModel.detailUiState) {
         is DetailUiState.Loading -> {
             LoadingScreen(modifier.fillMaxSize())
-            viewModel.getDetailData(menuId.toInt())
+            viewModel.getDetailData(menuId)
         }
 
         is DetailUiState.Success -> {
@@ -192,7 +199,7 @@ private fun DetailContentCard(
 fun DetailScreenPreview() {
     MyMealAppTheme {
         DetailScreen(
-            menuId = "0",
+            menuId = 0,
             onBackPressed = {}
         )
     }

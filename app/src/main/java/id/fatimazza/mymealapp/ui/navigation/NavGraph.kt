@@ -7,8 +7,11 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import id.fatimazza.mymealapp.ui.screen.detail.DetailDestination
 import id.fatimazza.mymealapp.ui.screen.favorite.FavoriteScreen
 import id.fatimazza.mymealapp.ui.screen.detail.DetailScreen
+import id.fatimazza.mymealapp.ui.screen.favorite.FavoriteDestination
+import id.fatimazza.mymealapp.ui.screen.home.HomeDestination
 import id.fatimazza.mymealapp.ui.screen.home.HomeScreen
 import id.fatimazza.mymealapp.ui.screen.home.MealsUiState
 
@@ -23,26 +26,27 @@ fun MealNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route,
+        startDestination = HomeDestination.route,
         modifier = modifier
     ) {
-        composable(route = Screen.Home.route) {
+        composable(route = HomeDestination.route) {
             HomeScreen(
                 mealsUiState = mealsUiState,
-                navigateToDetail = { menuId ->
-                    Screen.DetailMenu.createMenuDetailId(menuId)
-                    navController.navigate(Screen.DetailMenu.createRoute(menuId))
+                navigateToDetail = {
+                    navController.navigate("${DetailDestination.route}/${it}")
                 }
             )
         }
-        composable(route = Screen.Favorite.route) {
+        composable(route = FavoriteDestination.route) {
             FavoriteScreen()
         }
         composable(
-            route = Screen.DetailMenu.route,
-            arguments = listOf(navArgument("menuId") { type = NavType.StringType }),
+            route = DetailDestination.routeWithArgs,
+            arguments = listOf(navArgument(DetailDestination.detailIdArg) {
+                type = NavType.IntType
+            }),
         ) {
-            val id = it.arguments?.getString("menuId") ?: "0"
+            val id = it.arguments?.getInt(DetailDestination.detailIdArg) ?: 0
             DetailScreen(
                 menuId = id,
                 onBackPressed = { navController.navigateUp() }

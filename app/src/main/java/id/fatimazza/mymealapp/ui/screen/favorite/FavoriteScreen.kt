@@ -27,8 +27,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import id.fatimazza.mymealapp.R
 import id.fatimazza.mymealapp.data.local.FavoriteMealsItem
 import id.fatimazza.mymealapp.ui.components.MenuItem
+import id.fatimazza.mymealapp.ui.navigation.NavDestination
 import id.fatimazza.mymealapp.ui.screen.ViewModelProvider
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
+
+object FavoriteDestination : NavDestination {
+    override val route = "favorite"
+}
 
 @Composable
 fun FavoriteScreen(

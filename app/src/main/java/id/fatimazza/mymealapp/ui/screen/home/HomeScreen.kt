@@ -26,13 +26,18 @@ import id.fatimazza.mymealapp.data.model.MealsItem
 import id.fatimazza.mymealapp.ui.components.ErrorScreen
 import id.fatimazza.mymealapp.ui.components.LoadingScreen
 import id.fatimazza.mymealapp.ui.components.MenuItem
+import id.fatimazza.mymealapp.ui.navigation.NavDestination
 import id.fatimazza.mymealapp.ui.theme.MyMealAppTheme
+
+object HomeDestination : NavDestination {
+    override val route = "home"
+}
 
 @Composable
 fun HomeScreen(
     mealsUiState: MealsUiState,
     modifier: Modifier = Modifier,
-    navigateToDetail: (String) -> Unit,
+    navigateToDetail: (Int) -> Unit,
 ) {
     when (mealsUiState) {
         is MealsUiState.Loading ->
@@ -61,7 +66,7 @@ fun HomeScreen(
 fun PhotosGridScreen(
     meals: List<MealsItem>,
     modifier: Modifier = Modifier,
-    navigateToDetail: (String) -> Unit,
+    navigateToDetail: (Int) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -95,14 +100,14 @@ fun PhotosGridScreen(
 @Composable
 fun MealPhotoCard(
     meals: MealsItem,
-    navigateToDetail: (String) -> Unit,
+    navigateToDetail: (Int) -> Unit,
 ) {
     MenuItem(
         id = meals.idMeal,
         image = meals.strMealThumb,
         title = meals.strMeal,
         modifier = Modifier.clickable {
-            navigateToDetail(meals.idMeal)
+            navigateToDetail(meals.idMeal.toInt())
         }
     )
 }

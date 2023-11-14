@@ -81,7 +81,7 @@ fun FavoriteGridScreen(
                     contentPadding = PaddingValues(4.dp)
                 ) {
                     items(
-                        items = meals, key = { meal -> meal.idMeal }
+                        items = meals, key = { meal -> meal.favMealId }
                     ) { meal ->
                         FavoriteMealPhotoCard(
                             meal,

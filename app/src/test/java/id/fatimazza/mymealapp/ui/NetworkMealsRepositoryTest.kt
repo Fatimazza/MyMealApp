@@ -17,4 +17,13 @@ class NetworkMealsRepositoryTest {
             )
             assertEquals(MealsFakeDataSource.mealsList.meals, repository.getMealsData())
         }
+
+    @Test
+    fun networkMealsRepository_getRecipeDetails_verifyMealDetailsList() =
+        runTest {
+            val repository = NetworkMealsRepository(
+                mealsApiService = MealsFakeApiService()
+            )
+            assertEquals(MealsFakeDataSource.mealDetailList.meals, repository.getDetailData(1))
+        }
 }
